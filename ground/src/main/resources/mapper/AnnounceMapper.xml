@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.crewfactory.main.dao.AnnounceDao">
+
+	<select id="selectTopByHome" resultType="com.crewfactory.main.domain.AnnounceDomain">
+		select idx, section, title, description, regdate from (
+			select
+				idx, '00' as section, title, description, regdate
+			from announce_ground
+			union all
+			select 
+				idx, section, title, description, regdate
+			from recruit_ground
+		) a order by regdate desc limit 4
+	</select>
+	
+	<select id="selectAdmin" parameterType="java.util.HashMap" resultType="com.crewfactory.main.domain.AnnounceDomain">
+		SELECT 
+			idx, section, title, visit, regdate, regid, thumbnail
+		FROM announce_ground
+	</select>
+	
+	<select id="selectTotal" parameterType="java.util.HashMap" resultType="int">
+		SELECT 
+			count(idx) as total
+		FROM announce_ground
+		<trim prefix="WHERE" prefixOverrides="AND||OR">
+			<if test = "searchSection != null">
+				AND section = #{searchSection}
+			</if>
+		</trim>
+		<trim prefix="WHERE" prefixOverrides="AND||OR">
+			<if test = "searchText != null">
+				AND (title like CONCAT('%', #{searchText}, '%') OR content like CONCAT('%', #{searchText}, '%'))
+			</if>
+		</trim>;
+	</select>
+	
+	<select id="selectAll" parameterType="java.util.HashMap" resultType="com.crewfactory.main.domain.AnnounceDomain">
+		SELECT 
+			idx, section, title, description, regdate, regid, thumbnail
+		FROM announce_ground
+		<trim prefix="WHERE" prefixOverrides="AND||OR">
+			<if test = "searchSection != null">
+				AND section = #{searchSection}
+			</if>
+		</trim>
+		<trim prefix="WHERE" prefixOverrides="AND||OR">
+			<if test = "searchText != null">
+				AND (title like CONCAT('%', #{searchText}, '%') OR content like CONCAT('%', #{searchText}, '%'))
+			</if>
+		</trim>
+		ORDER BY idx DESC LIMIT #{start}, #{end};
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="com.crewfactory.main.domain.AnnounceDomain">
+		SELECT 
+			*
+		FROM announce_ground where idx = #{idx};
+	</select>
+	
+	<insert id="insert" parameterType="com.crewfactory.main.domain.AnnounceDomain">
+		INSERT INTO announce_ground (
+			idx, section, description, title, content, regid, regip, regteam, regdate, thumbnail
+		) VALUES (
+			(select ifnull(max(idx)+1, 1) from announce_ground a),
+			#{section },
+			#{description },
+			#{title },
+			#{content },
+			#{regid },
+			#{regip },
+			#{regteam},
+			now(),
+			#{thumbnail }
+		);
+	</insert>
+	
+	<update id="update" parameterType="com.crewfactory.main.domain.AnnounceDomain">
+        UPDATE announce_ground
+			SET
+			section = #{section },
+			description = #{description },
+			title = #{title },
+			content = #{content },
+			regid = #{regid },
+			regip = #{regip },
+			regteam = #{regteam },
+			visit = #{visit },
+			thumbnail = #{thumbnail }
+		WHERE idx = #{idx}
+    </update>
+        
+    <delete id="delete" parameterType="int">
+        DELETE FROM announce_ground WHERE idx = #{idx}
+    </delete>
+    
+</mapper>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.crewfactory.main.dao.VariousDao">
+
+	<select id="select" resultType="com.crewfactory.main.domain.VariousDomain">
+		SELECT 
+			*
+		FROM various;
+	</select>
+	
+	<select id="view" parameterType="int" resultType="com.crewfactory.main.domain.VariousDomain">
+		SELECT 
+			*
+		FROM various where idx = #{idx};
+	</select>
+	
+	<select id="selectTotalByWeb" parameterType="java.util.HashMap" resultType="int">
+		SELECT
+			count(idx)
+		FROM various 
+		<trim prefix="WHERE" prefixOverrides="AND||OR">
+			<if test = "searchText != null">
+			AND (title like CONCAT('%', #{searchText}, '%') OR content like CONCAT('%', #{searchText}, '%'))
+			</if>
+		</trim> 
+	</select>
+	
+	<select id="selectByWeb" parameterType="java.util.HashMap" resultType="com.crewfactory.main.domain.VariousDomain">
+		SELECT 
+			idx, title, description, content, regdate, visit, regid
+		FROM various
+		<trim prefix="WHERE" prefixOverrides="AND||OR">
+			<if test = "searchText != null">
+			AND (title like CONCAT('%', #{searchText}, '%') OR content like CONCAT('%', #{searchText}, '%'))
+			</if>
+		</trim> 
+		ORDER BY idx DESC LIMIT #{start}, #{end};
+	</select>
+	
+	<insert id="insert" parameterType="com.crewfactory.main.domain.VariousDomain">
+		INSERT INTO various (
+			idx, title, content, regid, regip, regdate
+		) VALUES (
+			(select ifnull(max(idx)+1, 1) from various a),
+			#{title },
+			#{content },
+			#{regid },
+			#{regip },
+			now()
+		);
+	</insert>
+	
+	<update id="update" parameterType="com.crewfactory.main.domain.VariousDomain">
+        UPDATE various
+			SET
+			title=#{title },
+			content=#{content },
+			regid=#{regid },
+			regip=#{regip },
+			visit=#{visit }
+		WHERE idx = #{idx};
+    </update>    
+    
+    <delete id="delete" parameterType="int">
+        DELETE FROM various WHERE idx = #{idx}
+    </delete>
+    
+</mapper>
