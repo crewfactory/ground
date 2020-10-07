@@ -44,7 +44,7 @@
 				<p class="font-14 font-white pt-5 px-5"><!-- Tomorrow's Learning Card System --></p>
 				<p class="font-40 font-bold font-white py-3 px-5">국민내일배움카드란?</p>
 				<p class="font-16 font-white py-3 px-5" style="line-height:1.6rem;">2020년 통합으로 재직에 관계없이 배움을 제공받을 수 있으며, 일정금액을 지원해주는 프로그램입니다.
-				고용노동부가 실시한 훈련기관 인증평가를 거쳐 인증받은 기관이과정승인을 받고 수업을 진행할 수 있습니다.</p>
+				고용노동부가 실시한 훈련기관 인증평가를 거쳐 인증받은 기관이 과정승인을 받고 수업을 진행할 수 있습니다.</p>
 				<div class="px-5 pb-5"><a href="/counsel/online.do?cost=y&imgchk="><button class="banner-button mt-5">지원금상담신청</button></a></div>
 			</div>
 		</div>
@@ -76,7 +76,7 @@
 					</tr>
 					<tr>
 						<td class="py-3 px-2 text-center">1유형</td>
-						<td class="py-3 px-2" >1인당 최대 300만원 한도로 훈련비 80~100% 지원(한도를 초과한 금액은 자비부담</td>
+						<td class="py-3 px-2" >1인당 최대 300만원 한도로 훈련비 80~100% 지원(한도를 초과한 금액은 자비부담)</td>
 					</tr>
 				</tbody>
 			</table>
@@ -172,13 +172,13 @@
 				</tr>
 				<tr>
 					<td class="py-3 px-3 bg-skyblue">취업성공패키지2</td>
-					<td class="py-3 px-3">234,040원</td>
+					<td class="py-3 px-3">117,020원</td>
 					<td class="py-3 px-3 bg-skyblue">취업성공패키지2</td>
 					<td class="py-3 px-3">312,050원</td>
 				</tr>
 				<tr>
 					<td class="py-3 px-3 bg-skyblue">일반훈련생</td>
-					<td class="py-3 px-3">273,050원</td>
+					<td class="py-3 px-3">156,030원</td>
 					<td class="py-3 px-3 bg-skyblue">일반훈련생</td>
 					<td class="py-3 px-3">364,060원</td>
 				</tr>

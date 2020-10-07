@@ -61,7 +61,7 @@
 				<img src="/img/detail_op_002.jpg" class="mobile-100-percent">
 				<p class="font-18 my-3" style="line-height:25px;">CRS는 컴퓨터 시스템을 통해 예약, 발권 시스템을 구축 고객의 요청을 기반으로 도착지, 운항스케줄, 좌석CLASS 등을 조회하여 적정 항공운임을 자동으로 산출하는 예약의 기반이 되는 시스템으로 
 				여행사취업을 목표로 한다면 반드시 배워야하는 필수 커리큘럼입니다.</p>
-				<div><a href="/education/crsdcs.do"><button class="banner-button mt-5">CRS/DCS과정 상세보기</button></a></div>
+				<div><a href="/education/crsdcs.do"><button class="banner-button mt-5">CRS자격증 과정 상세보기</button></a></div>
 			</div>
 			<div class="col-6"></div>
 		</div>
